@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
+	<name>Data Generator</name>
+	<author>Paweł Sroka</author>
+	<version>1.0-dev</version>
+	<category>admin</category>
+	<category>generators</category>
+	<description>Allows to fill-up Elgg installation with a lot of fake data.</description>
+	<website>https://srokap.pl/</website>
+	<copyright>(C) Paweł Sroka 2013</copyright>
+	<license>MIT License</license>
+	
+	<!-- <screenshot>
+		<path>screenshots/main.png</path>
+		<description>Main plugin page</description>
+	</screenshot>
+	
+	<screenshot>
+		<path>screenshots/widget.png</path>
+		<description>Additional button in control panel</description>
+	</screenshot> -->
+	
+	<requires>
+		<type>php_version</type>
+		<version>5.3.3</version>
+	</requires>
+	
+	<requires>
+		<type>elgg_release</type>
+		<version>1.8</version>
+	</requires>
+</plugin_manifest>
