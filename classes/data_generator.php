@@ -11,27 +11,7 @@ class data_generator {
 		elgg_register_action('data_generator/run', 
 			elgg_get_plugins_path() . __CLASS__ . '/actions/data_generator/run.php', 
 			'admin');
-		
-		if (get_input('dev')==6) {
-			
-			var_dump(self::getLocales());
-			die();
-			
-// 			$locale = 'pl_PL';
-			$locale = 'en_US';
-			$generator = self::getGenerator($locale);
-			
-			for ($i=0; $i<5; $i++) {
-// 				$user = $generator->usersRelationshipFriend();
-// 				$user = $generator->newUserEntity(false);
-				$user = $generator->existingUserEntity();
-				var_dump($user);
-// 				var_dump($user, $user->save());
-// 				var_dump($user->save());
-			}
-			
-			die();
-		}
+
 	}
 	
 	/**
