@@ -29,6 +29,40 @@ class data_generator {
 	}
 	
 	/**
+	 * @param int $amount
+	 * @param string $profile
+	 * @param string $locale
+	 * @throws InvalidArgumentException
+	 * @return int
+	 */
+	static function generate($amount, $profile, $locale) {
+		$amount = (int)$amount;
+		if ($amount <= 0) {
+			throw new InvalidArgumentException("Amount must be positive integer.");
+		}
+		if (!in_array($profile, data_generator::getElggProviderMethods())) {
+			throw new InvalidArgumentException("Invalid profile provided: $profile");
+		}
+		if (!in_array($locale, data_generator::getLocales())) {
+			throw new InvalidArgumentException("Invalid locale provided: $locale");
+		}
+		
+		$generator = self::getGenerator($locale);
+		$success = 0;
+		while ($amount-- > 0) {
+			$data = $generator->{$profile}();
+			try {
+				if ($data->save()) {
+					$success++;
+				}
+			} catch (Exception $e) {
+				//fail silently here - just count
+			}
+		}
+		return $success;
+	}
+	
+	/**
 	 * @param string $locale
 	 * @return \Faker\Generator
 	 */
