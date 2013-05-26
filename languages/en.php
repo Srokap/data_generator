@@ -5,6 +5,10 @@ $english = array(
 This tool is meant for debug only, and generates a lot of fake data that may be 
 hard to distinguish from the real one. It\'s meant to be used for more meaningful 
 benchmarking development environments only.',
+	'admin:data_generator:cli:warning' => 'Warning',
+	'admin:data_generator:cli:disclaimer' => 'You may have problems with using this tool for 
+large amounts of items. In case your script gets killed or times out, try using CLI (Command Line Interface) version.
+It\'s in this plugin directory (%s). To get usage options, run:<pre>php cli_run.php --help</pre>',
 	'admin:data_generator:title' => 'Generate fake content',
 	'admin:data_generator:locale' => 'Localization: ',
 	'admin:data_generator:profile' => 'Content to generate: ',

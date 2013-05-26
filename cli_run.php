@@ -18,6 +18,23 @@ echo "Copyright (C) Pawel Sroka 2013\n\n";
 $options = getopt('h', array('help'));
 if (count($options)) {
 	//TODO print help
+	echo <<<EOT
+Usage: cli_run.php [OPTIONS]
+
+Options are:
+-a N, --amount N	Sets N as amount of items to generate. Required.
+
+-p P, --profile P	Sets P as chosen profile that determines type of items 
+			to generate. Run without value to get list of possible
+			values. Required.
+
+-l L, --locale L	Sets L as localization of generated content. Some 
+			of valid options may not be fully supported. Run
+			without value to get list of possible values. Required.
+
+-h, --help		Outputs this help info.
+
+EOT;
 	exit(0);
 }
 

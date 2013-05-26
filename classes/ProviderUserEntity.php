@@ -8,10 +8,12 @@ class ProviderUserEntity extends ProviderEntity {
 		
 		$user = new ElggUser();
 		
+		$user->access_id = ACCESS_PUBLIC;
+		
 		$user->time_created = $this->generator->unixTime;		//fails
 		
 		$user->name = $this->generator->name;
-		$user->username = $this->generator->userName;			//unsafe includes '
+		$user->username = $this->generator->userName;			//unsafe includes ', cyrylic chars
 		$user->email = $this->generator->safeEmail;
 		$user->password = $this->generator->md5;
 		$user->language = $this->generator->languageCode;

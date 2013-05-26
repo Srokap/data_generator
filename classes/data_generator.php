@@ -29,6 +29,18 @@ class data_generator {
 	}
 	
 	/**
+	 * @return boolean tells if we're running script from CLI or not
+	 */
+	static function is_cli() {
+		return PHP_SAPI == 'cli';
+	}
+	
+	/**
+	 * @var int in seconds
+	 */
+	static $cli_info_interval = 5;
+	
+	/**
 	 * @param int $amount
 	 * @param string $profile
 	 * @param string $locale
@@ -47,6 +59,11 @@ class data_generator {
 			throw new InvalidArgumentException("Invalid locale provided: $locale");
 		}
 		
+		$totalAmount = $amount;
+		
+		$mt = microtime(true);
+		$time = null;
+		
 		$generator = self::getGenerator($locale);
 		$success = 0;
 		while ($amount-- > 0) {
@@ -58,6 +75,17 @@ class data_generator {
 			} catch (Exception $e) {
 				//fail silently here - just count
 			}
+			if (self::is_cli()) {
+				if ($time === null || time() > $time + self::$cli_info_interval) {
+					$time = time();
+					echo sprintf("%.2f%% - %d items generated in %.2fs\r", 
+						($totalAmount - $amount) * 100 / $totalAmount, $success, microtime(true) - $mt);
+				}
+			}
+		}
+		if (self::is_cli()) {
+			//clear line
+			echo "\t\t\t\t\t\t\t\t\t\r";
 		}
 		return $success;
 	}
