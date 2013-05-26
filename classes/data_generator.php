@@ -97,6 +97,7 @@ class data_generator {
 	static function getGenerator($locale = 'en_US') {
 		$generator = Faker\Factory::create($locale);
 		$generator->addProvider(new ProviderUserEntity($generator));
+		$generator->addProvider(new ProviderBlogEntity($generator));
 		return $generator;
 	}
 	
@@ -107,7 +108,8 @@ class data_generator {
 		return array(
 			'newUserEntity',
 			'usersRelationshipFriend',
-			
+			'newBlogEntity',
+			'blogAnnotationRevision',
 		);
 	}
 	
