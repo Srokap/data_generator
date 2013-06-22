@@ -110,6 +110,7 @@ class data_generator {
 			'usersRelationshipFriend',
 			'newBlogEntity',
 			'blogAnnotationRevision',
+			'blogAnnotationComment',
 		);
 	}
 	

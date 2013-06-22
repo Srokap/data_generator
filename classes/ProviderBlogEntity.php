@@ -58,6 +58,25 @@ class ProviderBlogEntity extends ProviderEntity {
 	}
 	
 	/**
+	 * @return ElggAnnotation
+	 */
+	function blogAnnotationComment() {
+		$blog = $this->existingBlogEntity();
+		$user = $this->generator->existingUserEntity();
+		
+		if ($blog && $user) {
+			$annotation = new ElggAnnotation();
+			$annotation->entity_guid = $blog->guid;
+			$annotation->name = 'generic_comment';
+			$annotation->value = $this->generator->text($this->generator->randomNumber(1000, 4000));
+			$annotation->value_type = 'text';
+			$annotation->access_id = $blog->access_id;
+			$annotation->owner_guid = $user->guid;
+			return $annotation;
+		}
+	}
+	
+	/**
 	 * @return UserEntity
 	 */
 	function existingBlogEntity() {
