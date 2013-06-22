@@ -69,7 +69,7 @@ class data_generator {
 		while ($amount-- > 0) {
 			$data = $generator->{$profile}();
 			try {
-				if ($data->save()) {
+				if (is_callable(array($data, 'save')) && $data->save()) {
 					$success++;
 				}
 			} catch (Exception $e) {
