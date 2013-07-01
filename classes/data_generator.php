@@ -66,20 +66,43 @@ class data_generator {
 		
 		$generator = self::getGenerator($locale);
 		$success = 0;
+		$processed = 0;
 		while ($amount-- > 0) {
+			$processed++;
 			$data = $generator->{$profile}();
 			try {
-				if (is_callable(array($data, 'save')) && $data->save()) {
-					$success++;
+				if (is_callable(array($data, 'save'))) {
+					if ($data->save()) {
+						$success++;
+					} else {
+						if (self::is_cli()) {
+							//clear line
+							echo "\t\t\t\t\t\t\t\t\t\r";
+							echo "Fail: Error while saving\n";
+							$messages = system_messages(NULL, "error");
+							echo "Msgs: " . var_export($messages['error'], true) . "\n";
+						}
+					}
+				} else {
+					if (self::is_cli()) {
+						//clear line
+						echo "\t\t\t\t\t\t\t\t\t\r";
+						echo "Fail: Not saveable item: " . var_export($data, true) . "\n";
+					}
 				}
 			} catch (Exception $e) {
+				if (self::is_cli()) {
+					//clear line
+					echo "\t\t\t\t\t\t\t\t\t\r";
+					echo "Fail: " . $e->getMessage() . "\n";
+				}
 				//fail silently here - just count
 			}
 			if (self::is_cli()) {
 				if ($time === null || time() > $time + self::$cli_info_interval) {
 					$time = time();
-					echo sprintf("%.2f%% - %d items generated in %.2fs\r", 
-						($totalAmount - $amount) * 100 / $totalAmount, $success, microtime(true) - $mt);
+					echo sprintf("%.2f%% - %d items generated, %d failures in %.2fs\r", 
+						($totalAmount - $amount) * 100 / $totalAmount, $success, $processed - $success, microtime(true) - $mt);
 				}
 			}
 		}

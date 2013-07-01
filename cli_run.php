@@ -9,6 +9,22 @@ $mt = microtime(true);
 
 require_once(dirname(dirname(dirname(__FILE__))) . "/engine/start.php");
 
+if (!elgg_is_active_plugin('data_generator')) {
+	echo "Plugin data_generator must be enabled to use this tool\n";
+	exit(5);
+}
+
+/*
+ * Login as admin
+ */
+$admins = elgg_get_admins(array('limit' => 1));
+$admin = array_shift($admins);
+if (!login($admin)) {
+	echo "Failed to log in as admin user: {$admin->username}\n";
+	exit(4);
+}
+echo "Logged in.\n";
+
 echo "Data Generator plugin CLI interface.\n";
 echo "Copyright (C) Pawel Sroka 2013\n\n";
 
