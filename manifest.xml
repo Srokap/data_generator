@@ -6,19 +6,9 @@
 	<category>admin</category>
 	<category>generators</category>
 	<description>Allows to fill-up Elgg installation with a lot of fake data.</description>
-	<website>https://srokap.pl/</website>
+	<website>http://srokap.pl/</website>
 	<copyright>(C) Paweł Sroka 2013</copyright>
 	<license>MIT License</license>
-	
-	<!-- <screenshot>
-		<path>screenshots/main.png</path>
-		<description>Main plugin page</description>
-	</screenshot>
-	
-	<screenshot>
-		<path>screenshots/widget.png</path>
-		<description>Additional button in control panel</description>
-	</screenshot> -->
 	
 	<requires>
 		<type>php_version</type>

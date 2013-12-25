@@ -1,0 +1,28 @@
+{
+	"name": "srokap/data_generator",
+	"type": "elgg-plugin",
+	"description": "Elgg plugin, that allows to fill-up Elgg installation with a lot of fake data.",
+	"homepage": "https://github.com/Srokap/data_generator",
+	"minimum-stability": "stable",
+	"keywords": ["elgg", "plugin", "tests", "data generator", "faker"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Paweł Sroka",
+			"email": "srokap@gmail.com"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/Srokap/data_generator/issues"
+	},
+	"autoload": {
+		"classmap": ["classes/", "vendors/fzaninotto/faker/src/"]
+	},
+	"require": {
+		"php": ">=5.3.3",
+		"composer/installers": ">=1.0.8"
+	},
+	"provides": {
+		"fzaninotto/faker": "1.3.0"
+	}
+}
