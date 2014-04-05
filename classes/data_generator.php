@@ -141,7 +141,7 @@ class data_generator {
 	 * @return string[]
 	 */
 	static function getLocales() {
-		$dirPath = dirname(dirname(__FILE__)) . '/vendors/Faker/Provider/';
+		$dirPath = dirname(dirname(__FILE__)) . '/vendors/fzaninotto/faker/src/Faker/Provider/';
 		$files = scandir($dirPath);
 		foreach ($files as $key => $file) {
 			if ($file[0] == '.' || !is_dir($dirPath . $file)) {
